@@ -43,6 +43,11 @@ async def welcome(message: types.Message):
     await bot.send_message(message.chat.id, "Привіт, <b>{0.first_name}</b>!\nХочеш дізнатися більше про локальну школу успіху в Києві?\nВибирай опцію нижче 👇".format(message.from_user, bot.get_me()), parse_mode='html', reply_markup=markup)
 
 
+@dp.message_handler()
+async def echo(message: types.Message):
+    await message.answer(message.text)
+
+
 @dp.message_handler(content_types=['text'])
 async def answer_reply(message: types.Message):
     if message.chat.type == 'private':
